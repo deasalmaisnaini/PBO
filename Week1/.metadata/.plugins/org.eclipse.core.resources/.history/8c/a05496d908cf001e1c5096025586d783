@@ -1,0 +1,30 @@
+package com.blog.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.blog.service.CommentService;
+import com.blog.vo.Comment;
+import com.blog.vo.Result;
+
+@RestController
+public class CommentController {
+
+    @Autowired
+    CommentService commentService;
+
+    @PostMapping("/comment")
+    public ResponseEntity<Result> savePost(@RequestBody Comment commentParam) {
+        Comment comment = new Comment(commentParam.getPostId(), commentParam.getUser(), commentParam.getComment());
+        boolean isSuccess = commentService.saveComment(comment);
+
+        if (isSuccess) {
+            return new ResponseEntity<>(new Result(200, "Success"), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new Result(500, "Fail"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}

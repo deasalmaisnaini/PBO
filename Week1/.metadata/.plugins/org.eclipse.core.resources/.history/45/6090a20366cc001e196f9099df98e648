@@ -1,0 +1,37 @@
+package com.blog.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.blog.repository.PostRepository;
+import com.blog.vo.Post;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class PostService {
+
+	private static List<Post> posts;
+	
+	@Autowired PostRepository postRepository;
+
+	public Post getPost(Long id) {
+		Post post = postRepository.findOne(id);
+		return post;
+	}
+
+	public List<Post> getPosts() {
+		List<Post> postList = postRepository.findPost();
+//		posts = new ArrayList<>();
+//		posts.add(new Post(1L, "Mike", "Mike's Post", "Welcome to My blog"));
+//		posts.add(new Post(2L, "Jason", "It's Jason", "Hi, My name is Jason"));
+
+		return postList;
+	}
+	
+	public List<Post> getPostsOrderByUpdtAsc() {
+		List<Post> postList = postRepository.findPostOrderByUpdtDateAsc();
+		return postList;
+	}
+}

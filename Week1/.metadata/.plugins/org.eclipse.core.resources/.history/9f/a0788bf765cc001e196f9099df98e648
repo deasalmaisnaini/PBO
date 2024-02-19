@@ -1,0 +1,63 @@
+package com.blog.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.blog.service.PostService;
+import com.blog.vo.Post;
+
+@RestController
+public class PostController {
+
+	@Autowired
+	PostService postService;
+
+	@GetMapping("/post")
+	public Post getPost(@RequestParam("id") Long id) {
+		Post post = postService.getPost(id);
+		return post;
+	}
+
+//    @GetMapping("/posts")
+//    public Post[] getPosts() {
+//        Post[] posts = {
+//            new Post(1L, "Mike", "Mike's Post", "Welcome to My blog"),
+//            new Post(2L, "Jason", "It's Jason", "Hi, My name is Jason")
+//        };
+//        return posts;
+//    }
+
+	@GetMapping("/posts")
+	public List<Post> getPosts() {
+		List<Post> posts = postService.getPosts();
+		return posts;
+
+	}
+
+	@GetMapping("/post/{id}")
+	public Post getPostPathParam(@PathVariable("id") Long id) {
+		Post post = postService.getPost(id);
+		return post;
+
+	}
+	
+	@GetMapping("/posts/updtdate/asc")
+	public List<Post> getPostsOrderByUpdtAsc() {
+		List<Post> posts = postService.getPostsOrderByUpdtAsc();
+		return posts;
+
+	}
+	
+	@GetMapping("/posts/updtdate/asc")
+	public List<Post> getPostsOrderByRegDesc() {
+		List<Post> posts = postService.getPostsOrderByRegDesc();
+		return posts;
+
+	}
+
+}

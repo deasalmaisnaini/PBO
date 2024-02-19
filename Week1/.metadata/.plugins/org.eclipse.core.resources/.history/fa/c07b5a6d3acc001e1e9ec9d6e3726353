@@ -1,0 +1,25 @@
+package com.blog.service;
+
+import org.springframework.stereotype.Service;
+import com.blog.vo.Post;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class PostService {
+
+	private static List<Post> posts;
+
+	public Post getPost() {
+		return new Post(1L, "Mike", "Mike's Post", "Welcome to My blog");
+	}
+
+	public List<Post> getPosts() {
+		posts = new ArrayList<>();
+		posts.add(new Post(1L, "Mike", "Mike's Post", "Welcome to My blog"));
+		posts.add(new Post(2L, "Jason", "It's Jason", "Hi, My name is Jason"));
+
+		return posts;
+	}
+}

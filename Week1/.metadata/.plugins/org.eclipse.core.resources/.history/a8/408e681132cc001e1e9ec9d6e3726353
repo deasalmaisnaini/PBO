@@ -1,0 +1,21 @@
+package com.blog.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.blog.service.PostService;
+import com.blog.vo.Post;
+
+@RestController
+public class PostController {
+	
+	@Autowired
+	PostService postService;
+
+    @GetMapping("/post")
+    public Post getPost() {
+        Post post = postService.getPost();
+        return post;
+    }
+}

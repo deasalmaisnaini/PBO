@@ -1,0 +1,15 @@
+package com.blog.service;
+
+
+import org.springframework.stereotype.Service;
+
+import com.blog.vo.Post;
+
+@Service
+public class PostService {
+
+    public Post getPost() {
+        Post post = new Post(1L, "Mike", "Mike's Post", "Welcome to My blog");
+        return post;
+    }
+}

@@ -1,0 +1,7 @@
+spring.mvc.view.prefix=/
+spring.mvc.view.suffix=.ftl
+spring.freemarker.template-loader-path=classpath:/templates/
+spring.freemarker.cache=false
+logging.level.freemarker=debug
+
+
